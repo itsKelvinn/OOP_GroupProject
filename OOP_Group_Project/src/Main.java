@@ -29,7 +29,7 @@ public class Main {
     }
 
     public static int login() throws IOException, InterruptedException{
-        String  username,password,command;
+        String  username,password;
         int flag = -1;
 
         do{

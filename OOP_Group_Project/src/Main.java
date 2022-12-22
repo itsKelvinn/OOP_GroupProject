@@ -287,17 +287,97 @@ public class Main {
         }
     }
     
+    public static void addProductStock(){
+        String productId;
+        String note;
+        int stock;
+
+
+        System.out.print("What product id u want add Stock : ");
+        productId = scanf.nextLine();
+
+        for(Products i : products){
+            if(i.getProduct_id().equals(productId) == false){
+                return;
+            }
+        }
+
+        System.out.print("How many Stock you want to add : ");
+        stock = scanf.nextInt();
+        scanf.nextLine();
+
+        System.out.print("Note : ");
+        note = scanf.nextLine();
+
+        for(Products i : products){
+            if(i.getProduct_id().equals(productId) ){
+                i.plusProduct_stock(stock, note);
+            }
+        }
+        
+        return;
+    }
+
+    public static void minProductStock(){
+        String productId;
+        String note;
+        int stock;
+
+
+        System.out.print("What product id u want add Stock : ");
+        productId = scanf.nextLine();
+
+        for(Products i : products){
+            if(i.getProduct_id().equals(productId) == false){
+                return;
+            }
+        }
+
+        System.out.print("How many Stock you want to min : ");
+        stock = scanf.nextInt();
+        scanf.nextLine();
+
+        System.out.print("Note : ");
+        note = scanf.nextLine();
+
+        for(Products i : products){
+            if(i.getProduct_id().equals(productId) ){
+                i.minProduct_stock(stock, note);
+            }
+        }
+        
+        return;
+    }
+    
+    public static void history() throws IOException, InterruptedException{
+        String productId;
+        
+        System.out.println("Insert Product Id that u want to view : ");
+        productId = scanf.nextLine();
+
+        cls();
+
+        for(Products i : products){
+            if(i.getProduct_id().equals(productId) == true){
+                i.history();
+            }
+        }
+
+        System.out.println("\n\n\nPress enter to back to menu");
+        scanf.nextLine();
+    }
+
     public static int menu(){
         int op;
-        System.out.println("Menu " + staffLogin.getName());
-        System.out.println("===============");
+        System.out.println("Hello " + staffLogin.getName() + ", Wellcome to Menu");
+        System.out.println("=================================================");
         System.out.println("1. View Products and Stock");
         System.out.println("2. Add Product");
         System.out.println("3. Delete Product");
         System.out.println("4. Add Product Stock");
-        System.out.println("4. Drop Product Stock");
-        System.out.println("5. View History");
-        System.out.println("6. Log out");
+        System.out.println("5. Drop Product Stock");
+        System.out.println("6. View History");
+        System.out.println("7. Log out");
         System.out.print("Chose >> ");
         op = scanf.nextInt();
         scanf.nextLine();
@@ -306,6 +386,14 @@ public class Main {
     }
     
     public static void main(String[] args) throws IOException, InterruptedException{
+       
+        // Products newProduct = new shoes("Nike", 222);
+        // newProduct.plusProduct_stock(100, "Restock");
+        // newProduct.minProduct_stock(100,"sell");
+
+        // newProduct.history();   
+       
+       
         int op;
         staff newStaff = new staff("Kelvin", "Kelvin123123", "Kelvin Giovanno", "Male");
         staffArr.add(newStaff);
@@ -327,13 +415,21 @@ public class Main {
                         deleteProduct();
                         break;
                     case 4:
+                        viewProducts(0);
+                        addProductStock();
                         break;
                     case 5:
+                        viewProducts(0);
+                        addProductStock();
+                        break;
+                    case 6:
+                        viewProducts(0);
+                        history();
                         break;
                 }
                 cls();
             }
-            while(op != 6);
+            while(op != 7);
         }
         while(true);
     }    

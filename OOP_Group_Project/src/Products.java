@@ -19,6 +19,8 @@ public abstract class Products {
         this.product_type = product_type;
         this.product_stock = product_stock;
         this.product_id = generateID();
+        historyMassage.add("Stock Awal");
+        historyQuatity.add(product_stock);
     }
 
     public String getProduct_name() {
@@ -35,6 +37,26 @@ public abstract class Products {
 
     public String getProduct_id() {
         return product_id;
+    }
+
+    
+    public void history(){
+        System.out.println("+=================================================================+");
+        System.out.println("|     Description      |        Debit        |       Kredit       |");
+        System.out.println("+=================================================================+");
+        for(int i = 0 ; i < historyMassage.size(); i++){
+            System.out.printf("| %-21s|",historyMassage.get(i));
+            if(historyQuatity.get(i) < 0){
+                System.out.printf("          -          |        %-12s|",historyQuatity.get(i)*-1);
+            }
+            else{
+                System.out.printf("         %-12s|          -         |",historyQuatity.get(i));
+            }
+            System.out.println("");
+        }
+        System.out.println("+=================================================================+");
+        System.out.printf("|       Total          |                  %-24s|\n",getProduct_stock());
+        System.out.println("+=================================================================+");
     }
 
     private String generateID(){
@@ -81,5 +103,9 @@ public abstract class Products {
         historyMassage.add(massage);
         historyQuatity.add(stock);
         this.product_stock = this.product_stock + stock;
+    }
+
+    public Object getId() {
+        return null;
     }
 }
